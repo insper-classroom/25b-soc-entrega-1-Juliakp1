@@ -16,7 +16,7 @@ end entity Lab1_FPGA_RTL;
 
 architecture rtl of Lab1_FPGA_RTL is
 
--- signal
+-- signals
 TYPE STATE_TYPE IS (s0, s01, s1, s12, s2, s23, s3, s30);
 signal state  : STATE_TYPE := s0;
 signal nextState : std_logic  := '0';
@@ -28,7 +28,8 @@ begin
 	process(fpga_clk_50)
 	begin
     if (rising_edge(fpga_clk_50)) then
-	 
+		
+	 -- Clockwise	
 		if ((fpga_switches(1) = '1')) then
 		
 			CASE state IS
@@ -67,7 +68,8 @@ begin
 			when others=>
 			  state <= s0;
 			END CASE;
-			
+		
+	-- Counter-clockwise	
 		else
 			CASE state IS
 			WHEN s0=>
